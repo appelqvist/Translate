@@ -13,7 +13,7 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Log.d("Andreas", "fuck you guys!");
+        Log.d("Peter Pan", "I'M LIKE A BIIIRD, I WANNA FLY AWAAAAY");
     }
 
     @Override
