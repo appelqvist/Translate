@@ -32,7 +32,7 @@
         <item>Dove posso trovare il bancomat più vicino?</item>
         <item>Si può puntare a un buon ristorante?</item>
         <item>Dove posso trovare più bella spiaggia della città?</item>
-        <item>C'è una toilette nelle vicinanze?</item>
+        <item>C\'è una toilette nelle vicinanze?</item>
         <item>Dove posso acquistare il gelato?</item>
         <item>La ringrazio molto per il vostro aiuto!</item>
         <item>Posso avere il conto, per favore?</item>
@@ -44,12 +44,12 @@
         <item>How do I get to the train station?</item>
         <item>Where can I find the nearest ATM?</item>
         <item>Can you point to a good restaurant ?</item>
-        <item>Where can I find the city's best beach?</item>
+        <item>Where can I find the city\'s best beach?</item>
         <item>Is there a toilet nearby?</item>
         <item>Where can I buy ice cream?</item>
         <item>Thank you very much for your help!</item>
         <item>Can I have the check please?</item>
-        <item>Call the police, I've been shot!</item>
+        <item>Call the police, I\'ve been shot!</item>
     </string-array>
 
     <string-array name="Fra_Phrases">
@@ -58,11 +58,11 @@
         <item>Où puis-je trouver le distributeur le plus proche?</item>
         <item>Pouvez-vous indiquer à un bon restaurant?</item>
         <item>Où puis-je trouver la meilleure plage de la ville?</item>
-        <item>Y at-il des toilettes à proximité ?</item>
+        <item>Y at-il des toilettes à proximité?</item>
         <item>Où puis-je acheter de la crème glacée?</item>
         <item>Merci beaucoup pour votre aide!</item>
-        <item>Puis-je avoir le projet de loi, s'il vous plaît?</item>
-        <item>Appelez la police, m'a tiré dessus!</item>
+        <item>Puis-je avoir le projet de loi, s\'il vous plaît?</item>
+        <item>Appelez la police, m\'a tiré dessus!</item>
     </string-array>
 
     <string-array name="Spa_Phrases">
@@ -74,8 +74,8 @@
         <item>Hay un inodoro cerca?</item>
         <item>Dónde puedo comprar un helado?</item>
         <item>Muchas gracias por su ayuda!</item>
-        <item>Puedo tener la cuenta , por favor?</item>
-        <item>Llame a la policía , me han disparado!</item>
+        <item>Puedo tener la cuenta, por favor?</item>
+        <item>Llame a la policía, me han disparado!</item>
     </string-array>
 
 </resources>
