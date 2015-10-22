@@ -6,6 +6,7 @@ import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -33,6 +34,7 @@ public class MainFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_main, container, false);
         init(view);
         listener();
+        setAdapter();
         return view;
     }
 
@@ -48,6 +50,12 @@ public class MainFragment extends Fragment {
         spCategory = (Spinner)view.findViewById(R.id.spCategory);
         spLanguage = (Spinner)view.findViewById(R.id.spLanguage);
         lvPhrases = (ListView)view.findViewById(R.id.lvPhrase);
+    }
+
+    private void setAdapter(){
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1,
+                getActivity().getResources().getStringArray(R.array.Lang_Array));
+        spLanguage.setAdapter(adapter);
     }
 
 
