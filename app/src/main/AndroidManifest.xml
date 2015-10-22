@@ -28,7 +28,7 @@
             android:screenOrientation="portrait" />
         <meta-data
             android:name="ispeech_api_key"
-            android:value="developerdemokeydeveloperdemokey" />
+            android:value="140c9a14af31ac695c4086ea56276865" />
         <meta-data
             android:name="debug"
             android:value="false" />

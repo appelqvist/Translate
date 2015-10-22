@@ -2,6 +2,8 @@ package com.group.translate;
 
 import android.app.Activity;
 import android.app.FragmentTransaction;
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,13 +12,16 @@ import android.view.MenuItem;
 
 public class MainActivity extends Activity {
     private Controller controller;
-
+    private Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        context = this.getApplicationContext();
         setContentView(R.layout.activity_main);
         Log.d("Peter Pan", "I'M LIKE A BIIIRD, I WANNA FLY AWAAAAY");
+        Intent myIntent = new Intent(context, TTSActivity.class);
+        startActivity(myIntent);
         controller = new Controller(this);
     }
 

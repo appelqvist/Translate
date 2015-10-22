@@ -39,6 +39,7 @@ public class TTSActivity extends Activity{
         prepareTTSEngine();
 
         synthesis.setStreamType(AudioManager.STREAM_MUSIC);
+        startSpeak();
     }
 
     private void prepareTTSEngine() {
@@ -88,45 +89,48 @@ public class TTSActivity extends Activity{
         }
     }
     public void startSpeak(){
-        try {
-				String ttsText = mainFragment.etPhrase.getText().toString();
-				byte [] b = synthesis.downloadByteArray(ttsText);
-
-				if (b!=null){
-					Log.d("DEBUG", "SUCESSSSSSSS!!!!!");
-					MediaPlayer mediaPlayer;
-					mediaPlayer = new MediaPlayer();
-
-					File tempMp3 = File.createTempFile("test", ".mp3", getCacheDir());
-	                FileOutputStream fos = new FileOutputStream(tempMp3);
-	                fos.write(b);
-	                fos.close();
-
-	                mediaPlayer = MediaPlayer.create(getApplicationContext(), Uri.fromFile(tempMp3));
-	                mediaPlayer.start();
-
-
-					//mediaPlayer.setDataSource();
-				}else{
-					Log.d("DEBUG", "FAILURE :( ");
-				}
-
-			} catch (BusyException e) {
-				Log.e(TAG, "SDK is busy");
-				e.printStackTrace();
-				Toast.makeText(context, "ERROR: SDK is busy", Toast.LENGTH_LONG).show();
-			} catch (NoNetworkException e) {
-				Log.e(TAG, "Network is not available\n" + e.getStackTrace());
-				Toast.makeText(context, "ERROR: Network is not available", Toast.LENGTH_LONG).show();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+//        try {
+//				//String ttsText = mainFragment.etPhrase.getText().toString();
+//            String ttsText = "Hello";
+//				byte [] b = synthesis.downloadByteArray(ttsText);
+//
+//				if (b!=null){
+//					Log.d("DEBUG", "SUCESSSSSSSS!!!!!");
+//					MediaPlayer mediaPlayer;
+//					mediaPlayer = new MediaPlayer();
+//
+//					File tempMp3 = File.createTempFile("test", ".mp3", getCacheDir());
+//	                FileOutputStream fos = new FileOutputStream(tempMp3);
+//	                fos.write(b);
+//	                fos.close();
+//
+//	                mediaPlayer = MediaPlayer.create(getApplicationContext(), Uri.fromFile(tempMp3));
+//	                mediaPlayer.start();
+//
+//
+//					//mediaPlayer.setDataSource();
+//				}else{
+//					Log.d("DEBUG", "FAILURE :( ");
+//				}
+//
+//			} catch (BusyException e) {
+//				Log.e(TAG, "SDK is busy");
+//				e.printStackTrace();
+//				Toast.makeText(context, "ERROR: SDK is busy", Toast.LENGTH_LONG).show();
+//			} catch (NoNetworkException e) {
+//				Log.e(TAG, "Network is not available\n" + e.getStackTrace());
+//				Toast.makeText(context, "ERROR: Network is not available", Toast.LENGTH_LONG).show();
+//			} catch (IOException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
 
             try {
-                String ttsText = mainFragment.etPhrase.getText().toString();
-
+                //String ttsText = mainFragment.etPhrase.getText().toString();
+                String ttsText = "Cioa,Bella";
+                synthesis.setVoiceType("euritalianmale");
                 synthesis.speak(ttsText);
+
 
             } catch (BusyException e) {
                 Log.e(TAG, "SDK is busy");
