@@ -23,9 +23,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".TTSActivity"
-            android:screenOrientation="portrait" />
+
         <meta-data
             android:name="ispeech_api_key"
             android:value="140c9a14af31ac695c4086ea56276865" />

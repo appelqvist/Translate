@@ -69,7 +69,7 @@ public class MainFragment extends Fragment {
         @Override
         public void onClick(View v) {
             controller.playText((String)spLanguage.getSelectedItem().toString(), etInput.getText().toString());
-            Log.d("", "Klickar");
+            Log.d("", "Klickar ");
         }
     }
 }
