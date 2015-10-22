@@ -8,12 +8,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 public class MainActivity extends Activity {
+    private Controller controller;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Log.d("Peter Pan", "I'M LIKE A BIIIRD, I WANNA FLY AWAAAAY");
+        controller = new Controller(this);
     }
 
     @Override
