@@ -17,11 +17,12 @@ import android.widget.Spinner;
  * A simple {@link Fragment} subclass.
  */
 public class MainFragment extends Fragment {
+
     private Button btnSpeak;
     private EditText etInput;
     private Spinner spCategory, spLanguage;
     private ListView lvPhrases;
-
+    private Controller controller;
 
     public MainFragment() {
         // Required empty public constructor
@@ -29,8 +30,7 @@ public class MainFragment extends Fragment {
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_main, container, false);
         init(view);
         listener();
@@ -44,10 +44,11 @@ public class MainFragment extends Fragment {
 
     }
 
+
     private void init(View view) {
         btnSpeak = (Button)view.findViewById(R.id.btnSpeak);
         etInput = (EditText)view.findViewById(R.id.etInput);
-        spCategory = (Spinner)view.findViewById(R.id.spCategory);
+        //spCategory = (Spinner)view.findViewById(R.id.spCategory);
         spLanguage = (Spinner)view.findViewById(R.id.spLanguage);
         lvPhrases = (ListView)view.findViewById(R.id.lvPhrase);
     }
@@ -56,6 +57,10 @@ public class MainFragment extends Fragment {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1,
                 getActivity().getResources().getStringArray(R.array.Lang_Array));
         spLanguage.setAdapter(adapter);
+    }
+
+    public void setController(Controller controller) {
+        this.controller = controller;
     }
 
 

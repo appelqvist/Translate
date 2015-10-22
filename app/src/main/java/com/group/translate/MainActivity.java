@@ -1,6 +1,7 @@
 package com.group.translate;
 
 import android.app.Activity;
+import android.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,6 +18,16 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
         Log.d("Peter Pan", "I'M LIKE A BIIIRD, I WANNA FLY AWAAAAY");
         controller = new Controller(this);
+    }
+
+    public void setFragment(MainFragment fragment, String tag, boolean backstack) {
+        FragmentTransaction ft = getFragmentManager().beginTransaction();
+        ft.replace(R.id.container, fragment, tag);
+
+        if (backstack) {
+            ft.addToBackStack(null);
+        }
+        ft.commit();
     }
 
     @Override
