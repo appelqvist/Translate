@@ -6,4 +6,10 @@ package com.group.translate;
 
 public class Controller {
 
+    private MainActivity activity;
+
+    public Controller(MainActivity activity){
+        this.activity = activity;
+    }
+
 }
