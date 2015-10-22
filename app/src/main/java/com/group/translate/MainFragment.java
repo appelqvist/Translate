@@ -3,6 +3,7 @@ package com.group.translate;
 
 import android.os.Bundle;
 import android.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -67,7 +68,8 @@ public class MainFragment extends Fragment {
     private class ButtonListener implements View.OnClickListener {
         @Override
         public void onClick(View v) {
-
+            controller.playText((String)spLanguage.getSelectedItem().toString(), etInput.getText().toString());
+            Log.d("", "Klickar");
         }
     }
 }

@@ -11,9 +11,11 @@ public class Controller {
 
     private MainActivity activity;
     private MainFragment mainFragment;
+    private Speaker speaker;
 
     public Controller(MainActivity activity){
         this.activity = activity;
+        this.speaker = new Speaker(activity);
 
         this.mainFragment = (MainFragment) activity.getFragmentManager().findFragmentByTag("mainFragment");
         if (this.mainFragment == null) {
@@ -23,13 +25,8 @@ public class Controller {
         }
     }
 
-    public void test(){
-        try{
-            URL google = new URL("http://rate-exchange.appspot.com/currency?from=USD&to=EUR");
-
-        }catch(Exception e){
-            e.printStackTrace();
-        }
+    public void playText(String lang, String phrase){
+        speaker.speak(lang,phrase);
     }
 
 }
