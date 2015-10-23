@@ -10,9 +10,34 @@
 
     <ListView
         android:layout_width="match_parent"
-        android:layout_height="189dp"
+        android:layout_height="150dp"
         android:id="@+id/lvPhrase"
         android:layout_gravity="center_horizontal" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:weightSum="1"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Inputspråk"
+            android:id="@+id/tvInputLang"
+            android:textSize="20sp"
+            android:layout_weight="0.51"
+            android:layout_marginLeft="10dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Outputspråk"
+            android:id="@+id/tvOutputLang"
+            android:textSize="20sp" />
+    </LinearLayout>
 
     <LinearLayout
         android:orientation="horizontal"
@@ -26,6 +51,14 @@
             android:id="@+id/spLanguage"
             android:layout_marginRight="10dp"
             android:layout_marginTop="10dp" />
+
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/spLangOut"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1" />
 
         <!--<Spinner
             android:layout_width="209dp"
@@ -41,18 +74,50 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/etInput"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp" />
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="New Button"
-        android:id="@+id/btnSpeak"
-        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
+        android:layout_marginBottom="20dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvTextTranslated"
+        android:textSize="20sp"
+        android:text="Översättning"
+        android:gravity="center"
+        android:layout_weight="0.28"
         android:layout_marginTop="10dp"
-        android:background="#208fff" />
+        android:layout_marginBottom="20dp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="125dp">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tala"
+            android:id="@+id/btnSpeak"
+            android:background="#208fff"
+            android:layout_gravity="bottom"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Översätt"
+            android:id="@+id/btnTranslate"
+            android:background="#208fff"
+            android:layout_gravity="bottom"
+            android:layout_above="@+id/btnSpeak"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp" />
+    </RelativeLayout>
 </LinearLayout>
