@@ -35,8 +35,15 @@ public class MainFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_main, container, false);
         init(view);
         listener();
-        setAdapter();
+        setSpinnerAdapter();
+        setListViewAdapter();
         return view;
+    }
+
+    private void setListViewAdapter() {
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1,
+                getActivity().getResources().getStringArray(R.array.Swe_Phrases));
+        lvPhrases.setAdapter(adapter);
     }
 
     private void listener() {
@@ -54,7 +61,7 @@ public class MainFragment extends Fragment {
         lvPhrases = (ListView)view.findViewById(R.id.lvPhrase);
     }
 
-    private void setAdapter(){
+    private void setSpinnerAdapter(){
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1,
                 getActivity().getResources().getStringArray(R.array.Lang_Array));
         spLanguage.setAdapter(adapter);
