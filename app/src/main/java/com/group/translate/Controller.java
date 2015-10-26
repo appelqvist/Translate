@@ -3,6 +3,7 @@ package com.group.translate;
 import android.media.session.MediaSession;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.view.animation.LayoutAnimationController;
 
 import com.memetix.mst.language.Language;
 import com.memetix.mst.translate.Translate;
@@ -18,11 +19,12 @@ import java.net.URL;
 
 public class Controller {
 
-    private String transKey = "";
     private String TAG = "Controller";
     private MainActivity activity;
     private MainFragment mainFragment;
     private Speaker speaker;
+
+    private String translatedText;
 
     private final String secret = "MsmMRLHZ5DyF+lct2ghRBaqAqcngZciiq7mdRbLbt9A=";
     private final String id = "translate1337";
@@ -41,8 +43,41 @@ public class Controller {
 
     public String translate(String inLang, String outLang, String phrase) {
 
-        MyAsyncTask a = new MyAsyncTask();
-        a.execute("asdasd");
+        Language in, out;
+
+        if (inLang.equals("Svenska")) {
+            in = Language.SWEDISH;
+        } else if (inLang.equals("English")) {
+            in = Language.ENGLISH;
+        } else if (inLang.equals("Italiano")) {
+            in = Language.ITALIAN;
+        } else if (inLang.equals("Francais")) {
+            in = Language.FRENCH;
+        } else if (inLang.equals("Espanol")) {
+            in = Language.SPANISH;
+        } else {
+            in = Language.ARABIC;
+        }
+
+        if (outLang.equals("Svenska")) {
+            out = Language.SWEDISH;
+        } else if (outLang.equals("English")) {
+            out = Language.ENGLISH;
+        } else if (outLang.equals("Italiano")) {
+            out = Language.ITALIAN;
+        } else if (outLang.equals("Francais")) {
+            out = Language.FRENCH;
+        } else if (outLang.equals("Espanol")) {
+            out = Language.SPANISH;
+        } else {
+            out = Language.ARABIC;
+        }
+
+        new MyAsyncTask() {
+            protected void onPostExecute(Boolean result) {
+                mainFragment.setTextTranslated(translatedText);
+            }
+        }.execute(in, out, phrase);
         return null;
     }
 
@@ -64,32 +99,24 @@ public class Controller {
         speaker.speak(lang, phrase);
     }
 
-    private class MyAsyncTask extends AsyncTask<String, Void, String> {
-       /* protected Boolean doInBackground(Void... arg0) {
+
+    class MyAsyncTask extends AsyncTask<Object, Integer, Boolean> {
+        @Override
+        protected Boolean doInBackground(Object... arg0) {
             Translate.setClientId(id);
             Translate.setClientSecret(secret);
+
+            String phrase = (String) arg0[2];
+            Language in = (Language) arg0[0];
+            Language out = (Language) arg0[1];
+
             try {
-                translatedText = Translate.execute("I should probably set this to something a little less profane", Language.ENGLISH, Language.FRENCH);
-                Log.d("",translatedText);
+                translatedText = Translate.execute(phrase, in, out);
+                Log.d("", translatedText);
             } catch (Exception e) {
                 translatedText = e.toString();
             }
-
-            return null;
-        }
-        */
-
-        @Override
-        protected String doInBackground(String... params) {
-            Translate.setClientSecret(secret);
-            Translate.setClientId(id);
-
-            try{
-                Log.d("", Translate.execute("hej", Language.SWEDISH, Language.ENGLISH));
-            }catch (Exception e){
-                e.printStackTrace();
-            }
-            return null;
+            return true;
         }
     }
 

@@ -84,7 +84,7 @@ public class MainFragment extends Fragment {
         spOutLanguage.setAdapter(adapter);
     }
 
-    private void setTextTranslated(String str){
+    public void setTextTranslated(String str){
         tvTextTranslated.setText(str);
     }
 
