@@ -1,7 +1,7 @@
 package com.group.translate;
 
 import android.os.AsyncTask;
-import android.util.Log;
+
 import com.memetix.mst.language.Language;
 import com.memetix.mst.translate.Translate;
 
@@ -76,7 +76,7 @@ public class Controller {
         in = stringtoLang(inLang);
         out = stringtoLang(outLang);
 
-        new MyAsyncTask() {
+        new Translator() {
             protected void onPostExecute(String result) {
                 mainFragment.setTextTranslated(result);
             }
@@ -96,7 +96,7 @@ public class Controller {
         in = stringtoLang(inLang);
         out = stringtoLang(outLang);
 
-        new MyAsyncTask() {
+        new Translator() {
             protected void onPostExecute(String result) {
                 mainFragment.setTextTranslated(result);
                 playText(outLang,result);
@@ -118,7 +118,7 @@ public class Controller {
      * Klassen representerar en översättningsapparat
      * Översätter fraser som skickas in med inLang och outLang
      */
-    class MyAsyncTask extends AsyncTask<Object, String, String> {
+    class Translator extends AsyncTask<Object, String, String> {
         @Override
         protected String doInBackground(Object... arg0) {
             Translate.setClientId(id);
