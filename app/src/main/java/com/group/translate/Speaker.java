@@ -1,7 +1,6 @@
 package com.group.translate;
 import android.media.AudioManager;
 import android.util.Log;
-
 import org.ispeech.SpeechSynthesis;
 import org.ispeech.SpeechSynthesisEvent;
 import org.ispeech.error.BusyException;
@@ -9,23 +8,32 @@ import org.ispeech.error.InvalidApiKeyException;
 import org.ispeech.error.NoNetworkException;
 
 /**
- * Created by andreasappelqvist on 2015-10-22.
+ * Created by group on 2015-10-22.
+ */
+
+/**
+ * Talar assistent
  */
 public class Speaker {
     private SpeechSynthesis synthesis;
-
     private MainActivity activity;
     private String TAG = "Speaker";
 
-
+    /**
+     * Iniitiserar Speaker-klassen
+     * @param activity
+     */
     public Speaker(MainActivity activity){
         this.activity = activity;
         setUpSpeaker();
         synthesis.setStreamType(AudioManager.STREAM_MUSIC);
     }
 
+    /**
+     * Förbereder sig för att kunna tala.
+     * @return
+     */
     public boolean setUpSpeaker(){
-
         try {
             synthesis = SpeechSynthesis.getInstance(this.activity);
             synthesis.setSpeechSynthesisEvent(new SpeechSynthesisEvent() {
@@ -63,6 +71,11 @@ public class Speaker {
     }
 
 
+    /**
+     * Utför talandet med angivet språk och fras
+     * @param lang
+     * @param phrase
+     */
     public void speak(String lang, String phrase){
         String speakLang = null;
 

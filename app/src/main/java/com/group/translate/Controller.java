@@ -1,22 +1,17 @@
 package com.group.translate;
 
-import android.media.session.MediaSession;
 import android.os.AsyncTask;
 import android.util.Log;
-import android.view.animation.LayoutAnimationController;
-
 import com.memetix.mst.language.Language;
 import com.memetix.mst.translate.Translate;
 
-import org.json.JSONObject;
-
-import java.io.IOException;
-import java.net.URL;
-
 /**
- * Created by andreasappelqvist on 2015-10-21.
+ * Created by grupp on 2015-10-21.
  */
 
+/**
+ * Klassen sköter logiken i programmet och används som en vidarbefodrare.
+ */
 public class Controller {
 
     private String TAG = "Controller";
@@ -24,11 +19,14 @@ public class Controller {
     private MainFragment mainFragment;
     private Speaker speaker;
 
-    private String translatedText;
-
     private final String secret = "MsmMRLHZ5DyF+lct2ghRBaqAqcngZciiq7mdRbLbt9A=";
     private final String id = "translate1337";
 
+    /**
+     * Initisierar klassen
+     * Och startar hem-fragmentet
+     * @param activity
+     */
     public Controller(MainActivity activity) {
         this.activity = activity;
         this.speaker = new Speaker(activity);
@@ -41,68 +39,88 @@ public class Controller {
         }
     }
 
-    public String translate(String inLang, String outLang, String phrase) {
+    /**
+     * Konventerar String lang till ett Language-obj
+     * @param strLang
+     * @return Language-obj
+     */
+    public Language stringtoLang(String strLang){
+        Language lang;
+
+        if (strLang.equals("Svenska")) {
+            lang = Language.SWEDISH;
+        } else if (strLang.equals("English")) {
+            lang = Language.ENGLISH;
+        } else if (strLang.equals("Italiano")) {
+            lang = Language.ITALIAN;
+        } else if (strLang.equals("Francais")) {
+            lang = Language.FRENCH;
+        } else if (strLang.equals("Espanol")) {
+            lang = Language.SPANISH;
+        } else {
+            lang = Language.ARABIC;
+        }
+        return lang;
+    }
+
+    /**
+     * Översätter ordet och skriver ut det i en textview
+     * @param inLang
+     * @param outLang
+     * @param phrase
+     */
+    public void translate(String inLang, String outLang, String phrase) {
 
         Language in, out;
 
-        if (inLang.equals("Svenska")) {
-            in = Language.SWEDISH;
-        } else if (inLang.equals("English")) {
-            in = Language.ENGLISH;
-        } else if (inLang.equals("Italiano")) {
-            in = Language.ITALIAN;
-        } else if (inLang.equals("Francais")) {
-            in = Language.FRENCH;
-        } else if (inLang.equals("Espanol")) {
-            in = Language.SPANISH;
-        } else {
-            in = Language.ARABIC;
-        }
-
-        if (outLang.equals("Svenska")) {
-            out = Language.SWEDISH;
-        } else if (outLang.equals("English")) {
-            out = Language.ENGLISH;
-        } else if (outLang.equals("Italiano")) {
-            out = Language.ITALIAN;
-        } else if (outLang.equals("Francais")) {
-            out = Language.FRENCH;
-        } else if (outLang.equals("Espanol")) {
-            out = Language.SPANISH;
-        } else {
-            out = Language.ARABIC;
-        }
+        in = stringtoLang(inLang);
+        out = stringtoLang(outLang);
 
         new MyAsyncTask() {
-            protected void onPostExecute(Boolean result) {
-                mainFragment.setTextTranslated(translatedText);
+            protected void onPostExecute(String result) {
+                mainFragment.setTextTranslated(result);
             }
         }.execute(in, out, phrase);
-        return null;
+
     }
 
-    public void translateAndSpeak(String inLang, String outLang, String swePhrase) {
-        Log.d(TAG, "InputLang: " + inLang);
-        Log.d(TAG, "OutputLang: " + outLang);
-        Log.d(TAG, "SwePhrase: " + swePhrase);
+    /**
+     * Översätter frasen samt pratar ut frasen.
+     * @param inLang
+     * @param outLang
+     * @param phrase
+     */
+    public void translateAndSpeak(String inLang, final String outLang, String phrase) {
 
-        //Göra en översättning på ordet swePhrase
-        //Från Svenksa till Angivet språk
-        //Tar det översatta ordet som använder playText(outLang, nyaOrdet)
+        Language in, out;
+        in = stringtoLang(inLang);
+        out = stringtoLang(outLang);
 
-
-        //Ska tas bort sen:
-        playText(outLang, swePhrase);
+        new MyAsyncTask() {
+            protected void onPostExecute(String result) {
+                mainFragment.setTextTranslated(result);
+                playText(outLang,result);
+            }
+        }.execute(in, out, phrase);
     }
 
+    /**
+     * Talar ut bestämd fras.
+     * @param lang
+     * @param phrase
+     */
     public void playText(String lang, String phrase) {
         speaker.speak(lang, phrase);
     }
 
 
-    class MyAsyncTask extends AsyncTask<Object, Integer, Boolean> {
+    /**
+     * Klassen representerar en översättningsapparat
+     * Översätter fraser som skickas in med inLang och outLang
+     */
+    class MyAsyncTask extends AsyncTask<Object, String, String> {
         @Override
-        protected Boolean doInBackground(Object... arg0) {
+        protected String doInBackground(Object... arg0) {
             Translate.setClientId(id);
             Translate.setClientSecret(secret);
 
@@ -110,13 +128,13 @@ public class Controller {
             Language in = (Language) arg0[0];
             Language out = (Language) arg0[1];
 
+            String translatedText0;
             try {
-                translatedText = Translate.execute(phrase, in, out);
-                Log.d("", translatedText);
+                translatedText0 = Translate.execute(phrase, in, out);
             } catch (Exception e) {
-                translatedText = e.toString();
+                translatedText0 = e.toString();
             }
-            return true;
+            return translatedText0;
         }
     }
 

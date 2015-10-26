@@ -60,7 +60,6 @@ public class MainFragment extends Fragment {
         //ListView Listener
         lvPhrases.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Log.d(TAG, "Klickade på: " + phrases[position]);
                 controller.translateAndSpeak("Svenska", spOutLanguage.getSelectedItem().toString(), phrases[position]);
             }
         });
@@ -97,11 +96,8 @@ public class MainFragment extends Fragment {
         public void onClick(View v) {
             if (v.getId() == R.id.btnSpeak) {
                 controller.translateAndSpeak(spInLanguage.getSelectedItem().toString(),spOutLanguage.getSelectedItem().toString(), etInput.getText().toString());
-                Log.d(TAG, "Klickar ");
             } else if (v.getId() == R.id.btnTranslate) {
-                Log.d(TAG,"Click");
-                String newText = controller.translate(spInLanguage.getSelectedItem().toString(), spOutLanguage.getSelectedItem().toString(),etInput.getText().toString());
-                MainFragment.this.setTextTranslated(newText);
+                controller.translate(spInLanguage.getSelectedItem().toString(), spOutLanguage.getSelectedItem().toString(),etInput.getText().toString());
             }
         }
     }
